@@ -25,7 +25,8 @@ while True:
 
         if valor > 0:
             saldo += valor
-            extrato += f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - Depósito: R$ {valor:.2f}\n"
+            data_transacao = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            extrato += f"Depósito: R$ {valor:.2f} - {data_transacao}\n"
             print("Deposito realizado com sucesso!")
            
         else: 
@@ -52,7 +53,8 @@ while True:
 
          elif valor >0:   
              saldo -= valor
-             extrato += f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - Saque: R$ {valor:.2f}\n"
+             data_transacao = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+             extrato += f"Saque: R$ {valor:.2f} - {data_transacao}\n"
              numero_de_saques += 1
              print("Saque realizado com sucesso!")
           
