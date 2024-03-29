@@ -1,3 +1,5 @@
+import datetime
+
 menu = """
 
 [d] Depositar
@@ -13,6 +15,7 @@ extrato = " "
 numero_de_saques = 0
 LIMITE_SAQUES = 3
 
+
 while True:
 
     opcao = input(menu)
@@ -22,28 +25,24 @@ while True:
 
         if valor > 0:
             saldo += valor
-            extrato += f"Deposito: R$ {valor: .2f}\n"
-            print("\n", "Deposito realizado com sucesso!")
-
+            extrato += f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - Depósito: R$ {valor:.2f}\n"
+            print("Deposito realizado com sucesso!")
+           
         else: 
             print("Operação falhou! O valor informado é invalido.")
 
     elif opcao == "s":
          valor = float(input("Informe o valor do saque: "))
 
-         sucesso_saque = valor <= saldo
-
          excedeu_saldo = valor > saldo
 
-         excedeu_limite = valor >limite
+         excedeu_limite = valor > limite
 
          excedeu_saques = numero_de_saques >= LIMITE_SAQUES
 
          if excedeu_saldo:
              print("Operação falhou! Você não tem saldo suficiente.")
-
-         elif sucesso_saque:
-             print("\n", "Saque realizado com sucesso!")    
+              
 
          elif excedeu_limite:
              print("Operação falhou! O valor do saque excede o limite.")
@@ -53,8 +52,10 @@ while True:
 
          elif valor >0:   
              saldo -= valor
-             extrato += f"Saque: R$ {valor:.2f}\n"
+             extrato += f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - Saque: R$ {valor:.2f}\n"
              numero_de_saques += 1
+             print("Saque realizado com sucesso!")
+          
 
          else:    
             print("Operação falhou! O valor informado é invalido.")
@@ -66,11 +67,7 @@ while True:
         print("======================================")
 
     elif opcao == "q":
-        print("""
-              Operação finalizada!
-
-              Obrigado por utilizar nosso sistema.
-              """)
+        print("Operação finalizada! Obrigado por utilizar nosso sistema.")
         break
 
 
